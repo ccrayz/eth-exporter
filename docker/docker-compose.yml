@@ -1,0 +1,24 @@
+version: "3"
+services:
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    restart: unless-stopped
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./volumes/prometheus:/prometheus
+
+  eth-expoter:
+    build:
+      context: ../
+      dockerfile: Dockerfile
+    container_name: eth-expoter
+    restart: unless-stopped
+    environment:
+      - ETH_ACCOUNT_ADDRESSES=0x333FB1A71a6836D171B9EbD6eBFED5a5A761C25D
+    ports:
+      - 8080:8080

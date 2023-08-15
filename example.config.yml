@@ -1,0 +1,3 @@
+eth_accounts:
+  - purpose: example-account-1
+    address: 0x333FB1A71a6836D171B9EbD6eBFED5a5A761C25D
